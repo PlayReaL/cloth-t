@@ -1,0 +1,8 @@
+Закон гука и какой констрейн использовать?
+
+SimulationModel::addaddClothConstraints
+4 вида
+addDistanceConstraint(v1, v2, distanceStiffness);
+addFEMTriangleConstraint(v1, v2, v3, xxStiffness, yyStiffness, xyStiffness, xyPoissonRatio, yxPoissonRatio);
+addStrainTriangleConstraint(v1, v2, v3, xxStiffness, yyStiffness, xyStiffness, normalizeStretch, normalizeShear);
+addDistanceConstraint_XPBD(v1, v2, distanceStiffness);
