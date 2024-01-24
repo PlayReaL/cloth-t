@@ -207,7 +207,7 @@ async function init(
     const d = new Float32Array(s);
     d[1] = gravity;
     d[2] = centerOffset;
-    d[3] = deltaTime / 1000;
+    d[3] = (deltaTime / 1000) * 2;
     const d2 = new Uint32Array(s);
     d2[0] = currSubdiv;
     device!.queue.writeBuffer(simParamBuffer, 0, s);
@@ -258,6 +258,80 @@ async function init(
       passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
       passEncoder.end();
     }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[1 - p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[1 - p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[1 - p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[1 - p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+    {
+      const passEncoder = commandEncoder.beginComputePass(
+        computePassDescriptor,
+      );
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, vertexBindGroup[p]);
+      passEncoder.dispatchWorkgroups(Math.ceil(numToDraw / 64));
+      passEncoder.end();
+    }
+
+
     {
       const renderPass = commandEncoder.beginRenderPass(renderPassDesc);
       renderPass.setPipeline(pipeline);
